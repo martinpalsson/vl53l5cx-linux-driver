@@ -1,0 +1,45 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = <&i2c1>;
+
+        __overlay__ {
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            tof1: stmvl53l5cx@30 {          // label: node-name@I2C-address
+                compatible = "st,stmvl53l5cx";
+                dev_num = <0x01>;           // Device number (of your choice)
+                reg = <0x30>;               // I2C address
+                pwr-gpios = <&gpio 20 32>;  // LPn GPIO, GPIO20, pin mode 32 = Pulldown
+                irq-gpios = <&gpio 26 2>;   // Int GPIO, GPIO26, pin mode 2
+                status = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&i2c1>;
+
+        __overlay__ {
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            tof2: stmvl53l5cx@31 {  
+                compatible = "st,stmvl53l5cx";
+                dev_num = <0x02>;   
+                reg = <0x31>;       
+                pwr-gpios = <&gpio 5  32>; 
+                irq-gpios = <&gpio 17 2>;  
+                status = "okay";
+            };
+        };
+    };
+};
+
+
