@@ -6,13 +6,17 @@ A fork of the official VL53L5CX linux driver from ST Microelectronics, adding en
 2. Adapt kernel/stmvl53l5cx.dts according to your installation.
 3. Read through docs/README.md, only Option 1/Kernel mode is relevant here although user mode is still supported. The source in this repo is prepared for Option 1/Kernel mode.
 4. After trying the test examples, go on to compile and execute user/multi_test to verify multi-sensor is working.
+```
 § cd user/multi_test
 § make
 § sudo ./multi_test
+```
 
 5. You can check that the sensors has been configured with correct I2C addresses with the i2cdetect tool
+```
 § sudo apt-get install i2c-tools
 § i2cdetect -y 1 # detect devices on i2c-1
+```
 
 Addresses "taken" by any kernel module will show up as UU in the address table, e.g.
 ```
